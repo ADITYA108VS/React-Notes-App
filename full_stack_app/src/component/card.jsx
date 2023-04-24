@@ -6,8 +6,7 @@ export default function Card(props) {
     const id = props.id;
     const name = props.name;
     function delete_record() {
-        async function delete_from_db()
-        {
+        async function delete_from_db() {
             try {
                 const response = await fetch(delete_url, {
                     method: "DELETE",
@@ -24,11 +23,11 @@ export default function Card(props) {
                 return error;
             }
         }
-        
 
-        delete_from_db().then((response)=>{
+
+        delete_from_db().then((response) => {
             set_changed(true);
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log(`error happened while deleting record ${error}`);
         })
 
@@ -44,7 +43,7 @@ export default function Card(props) {
 
             <h1>{id}</h1>
             <h2>{name}</h2>
-            <button style={{ "backgroundImage": "url(https://w7.pngwing.com/pngs/378/604/png-transparent-computer-icons-button-x-logo-web-button-symbol.png)" }} onClick={delete_record }>DELETE</button>
+            <button style={{ "backgroundImage": "url(https://w7.pngwing.com/pngs/378/604/png-transparent-computer-icons-button-x-logo-web-button-symbol.png)" }} onClick={delete_record}>DELETE</button>
         </div>
     )
 }
