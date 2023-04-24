@@ -21,12 +21,12 @@ app.use(body_parser.json())
 
 
 //starting the app
-app.listen(3000, (err, res) => {
+app.listen(5001, (err, res) => {
   if (err) {
-    console.log(`cannot start server  at port 3000 ${err}`);
+    console.log(`cannot start server  at port 5001 ${err}`);
   }
   else {
-    console.log("server started at port 3000 ");
+    console.log("server started at port 5001 ");
   }
 });
 

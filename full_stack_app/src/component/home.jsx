@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Card from "./card";
 import database_changed from "../context/database_changed";
+import { home_url } from "../url/url_endpoints";
 export default function Home(){
     const [array,set_array]=useState([]);
     const {changed,set_changed}=useContext(database_changed);
@@ -9,7 +10,7 @@ export default function Home(){
     useEffect(()=>{
         async function get_all(){
             try{
-                const response= await fetch('http://localhost:3000/home',{
+                const response= await fetch(home_url,{
                     'method':"GET"
                 });
                 

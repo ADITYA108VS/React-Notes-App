@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import database_changed from "../context/database_changed";
+import { post_url } from "../url/url_endpoints";
 export default function InputField() {
 
     //getting the added and setadded_state from global context file
@@ -23,8 +24,7 @@ export default function InputField() {
     //making a post request to database to add a user
     async function posta() {
         try {
-            console.log(`posting ${user_id} ${name}`);
-            const response = await fetch('http://localhost:3000/post', {
+            const response = await fetch(post_url, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -34,11 +34,9 @@ export default function InputField() {
                     "roll": user_id
                 })
             });
-            console.log(`RESPONSE IS NOT ERROR ${response}`);
             return response;
         }
         catch (error) {
-            console.log(`RESPONSE IS ERROR ${error}`);
             return error;
         }
     }
@@ -50,12 +48,19 @@ export default function InputField() {
             alert("Please fill the full field")
             return;
         }
-        posta().then((data) => {
-            console.log("successfully added");
-            set_changed(true);
-            console.log("data added successfully");
+        posta().then((response) => {
+            
+            if(response.status === 200)
+            {
+                set_changed(true);
+            }
+            else
+            {
+                alert(`user with roll ${user_id} already exists`);
+            }
+           
         }).catch((error) => {
-            console.log("error while adding data");
+            console.log(error);
         })
        
     }

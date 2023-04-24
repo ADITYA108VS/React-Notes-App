@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import database_changed from "../context/database_changed";
-
+import { delete_url } from "../url/url_endpoints";
 export default function Card(props) {
     const { set_changed } = useContext(database_changed);
     const id = props.id;
@@ -9,7 +9,7 @@ export default function Card(props) {
         async function delete_from_db()
         {
             try {
-                const response = await fetch('http://localhost:3000/delete', {
+                const response = await fetch(delete_url, {
                     method: "DELETE",
                     headers: {
                         'Content-Type': 'application/json'
